@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  app:
+    build: ./app
+    image: akshay/rq_app
+    command: python /app/views.py
+    ports:
+      - 5001:5001
+
+  rq-workers:
+    image: akshay/rq_app
+    command: rq worker -u redis://redis-server:6379 high default low
+    deploy:
+      replicas: 3
+  
+  rq-dashboard:
+    image: akshay/rq_app
+    command: rq-dashboard -H redis-server
+    ports:
+      - 9181:9181
+
+  redis-server:
+    image: redis:alpine
+    ports:
+      - 6379:6379

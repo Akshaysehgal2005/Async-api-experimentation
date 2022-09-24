@@ -1,0 +1,24 @@
+1. Create a virtual env in root folder
+
+python3 -m venv rq_env
+
+2. Install your dependencies after activating environment
+
+source rq_env/bin/activate
+pip install flask
+pip install redis
+pip install rq
+pip install rq-dashboard
+
+3. Save dependencies in the app folder as requirements.txt
+
+cd app/
+pip freeze > requirements.txt
+
+4. Add build details in the Dockerfile
+5. Add services details in the docker-compose.yml
+6. Build and run using docker-compose
+
+docker-compose build --no-cache
+docker-compose up
+
